@@ -1,0 +1,24 @@
+
+main.js:    
+        Main-ben példányosítunk egy játékteret (Magát a játékot megjelenítjük)
+
+Játéktér.js:
+        A játéktér osztályban létrehozzuk a játéktér adattagjait és tagfüggvényeit,
+        amivel működtetjük a játékot.
+        adattagok: 
+            MERET: egész szám
+        tagfüggvények:
+            constructor(): beállítja a játéktér adattagjait
+
+
+
+Elem.js:
+        Ez lesz maga a lámpa, aminek különböző tulajdonságai lesznek. Ezekkel az objektumokkal
+        lesz feltöltve egy lista a Játéktér.js-ben
+        adattagok:
+            bekapcsolva: logikai
+            szin: szöveg
+        tagfüggvények:
+            constructor(bekapcsolva, szin, sor, oszlop):
+                beállítja a lámpa adattagjait a paraméterbe kapott információk alapján.
+

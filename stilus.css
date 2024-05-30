@@ -1,0 +1,39 @@
+:root{
+    --meret: 3; /* CSS változó */
+}
+
+body {
+    width: 400px;
+    max-width: 1000px;
+    margin: auto;
+    justify-content: center;
+    background-color: gray;
+}
+
+#jatekter{
+    display: grid;
+    grid-template-columns: repeat(var(--meret), 1fr); /* Változó használata, meret * 1fr | repeat(3, 1fr) */
+    border: 1px solid black;
+    height: 50vh;
+}
+
+.gombok{
+    border-radius: 100%;
+    padding: 40px;
+    border: 1px solid black;
+    margin: 20px;
+}
+
+h1, p {
+    text-align: center;
+}
+
+#ujJatekGomb{
+    display: block;
+    margin: auto;
+    margin-top: 20px;
+    text-align: center;
+    font-size: large;
+    padding: 5px 10px;
+    border: 3px rgb(59, 59, 59) inset;
+}
