@@ -52,14 +52,9 @@ export function lighton() {
         // Rá kell tenni az eseménykezelőt az adott gombra
         let meret = $(":root");
         const gombELEM = $(".gombok");
-        gombELEM.on("click", function(){
+        gombELEM.on("click", function(event){
             const gombId = event.target.id;
-            /*if(LISTA[i] === true) LISTA[i] = false;
-            else LISTA[i] = true;
-            FOS
-            */
             LISTA[gombId] = !LISTA[gombId];
-            //LISTA[gombId] = !LISTA[gombId];
             console.log(gombId);
             console.log(LISTA);
             jatekVege(LISTA);
@@ -77,13 +72,6 @@ export function lighton() {
         if (i >= lista.length) alert("Hurrá, meghosszabítottad a Föld életét!");;
     }
 
-    /*function vegeFigyelo(lista){
-        $(window).on("load", function(){
-            jatekVege(lista);
-        });   
-    }
-    SZAR
-    */
 
     function ujJatekGomb(){
         UJJATEK.on("click", function(){

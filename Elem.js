@@ -14,8 +14,8 @@ export default class Elem{
     constructor(bekapcsolva, szin, sor, oszlop){
         this.#bekapcsolva = bekapcsolva;
         this.#szin = szin;
-        this.sor = sor;
-        this.oszlop = oszlop;
+        this.#sor = sor;
+        this.#oszlop = oszlop;
        
     }
 
