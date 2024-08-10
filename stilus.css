@@ -1,20 +1,45 @@
+main{
+    width: 30%;
+    max-width: 1000px;
+    margin: auto;
+    padding: 2.5%;
+    justify-content: center;
+    background-color: rgb(137, 135, 135);
+    border: 3px outset rgb(38, 142, 6);
+    border-radius: 10px;
+}
+
+body{
+    background-color: rgb(35, 35, 35);
+    text-align: center;
+}
+
 :root{
     --meret: 3; /* CSS változó */
 }
 
-body {
-    width: 400px;
-    max-width: 1000px;
-    margin: auto;
-    justify-content: center;
-    background-color: gray;
+header{
+    font-size: 35px;
+    color: white;
+    -webkit-text-stroke: 0.4px;
+    -webkit-text-stroke-color: black;
 }
 
-#jatekter{
+.jatekter{
     display: grid;
-    grid-template-columns: repeat(var(--meret), 1fr); /* Változó használata, meret * 1fr | repeat(3, 1fr) */
+    grid-template-columns: repeat(3, 1fr);     
+}
+
+.jatekter div{
+    aspect-ratio: 1;
+    border-radius: 100%;
     border: 1px solid black;
-    height: 50vh;
+    background-color: rgb(1, 96, 1);
+    margin: 10px;   
+}
+
+.felkapcs{
+    background-color: rgb(222, 222, 0) !important;
 }
 
 .gombok{
@@ -35,5 +60,20 @@ h1, p {
     text-align: center;
     font-size: large;
     padding: 5px 10px;
-    border: 3px rgb(59, 59, 59) inset;
+    border: 2px rgb(59, 59, 59) inset;
+    border-radius: 5px;
 }
+
+
+@media screen and (max-width: 1000px) {
+    main{
+        width: 50%;
+    }
+  }
+
+
+@media screen and (max-width: 600px) {
+    main{
+        width: 85%;
+    }
+  }

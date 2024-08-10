@@ -1,47 +1,100 @@
-import Elem from "./Elem.js";
+import Lampa from "./Lampa.js";
+import { rndGen } from "./fuggvenyek.js";
+import EredmenyMegjelenit from "./EredmenyMegjelenit.js";
 
 /* Létrehozzuk a játéktér adattagjait és tagfüggvényeit, amivel működtetjük a játékot */
 
 export default class Jatekter{
-    #MERET = 3;
-    #jatekter;
-    #jatekterLista;
+    #db = 0;
+    #allapotLista = [false, false, false, false, false, false, false, false, false];
+    #lepes;
 
-    constructor(){
-        this.#jatekter = $("#jatekter");
-        this.#jatekterLista = [];
-    }
+    constructor(db, allapotLista, meret, lepes){
+        this.#setAllapotLista();
+        this.#init();
+        const UJJATEK = $('#ujJatekGomb');
+            UJJATEK.on("click", function(){
+                location.reload();
+                //this.#init();            
+            });
+        $(window).on("kapcsolas", (event)=>{
+            //console.log(event.detail);
 
-    jatekterLetrehozas() {
-        let txt = "";
-        for(let i = 0; i<meret*meret; i++){
-            txt += `<div class="gombok" id="${i}"></div>`;
-        }
-        return txt;
-    }
+            let id = event.detail;
+            //this.#lepes += 1;
+            this.#szomszedokKeresese(id);
+            let dbOff = 0;
+            this.#allapotLista.forEach(elem => {
+                if(elem === false) dbOff++;
+            });
+            new EredmenyMegjelenit(dbOff, $('.eredmeny h3'));
 
-    jatekterMegjelenites(ELEMEK){
-        for (let i = 0; i < this.#jatekterLista.length; i++) {
-            if (lista[i] == true) ELEMEK.eq(i).css("background-color", "yellow");
-            else ELEMEK.eq(i).css("background-color", "green");
-        }
-    }
-
-    gombKezelo(LISTA) {
-        let meret = $(":root");
-        const gombELEM = $(".gombok");
-        gombELEM.on("click", function(event){
-            const gombId = event.target.id;
-            LISTA[gombId] = !LISTA[gombId];
-            console.log(gombId);
-            console.log(LISTA);
-            jatekVege(LISTA);
+            if(dbOff === 9) alert("Gratulálunk! Sikerült leoltanod az összes lámpát!");
         })
-        jatekterMegjelenites(LISTA, jatekELEMEK);
+        /*      
+        this.#db = db;
+        this.#allapotLista = allapotLista;
+        this.#lepes = lepes;
+        */
+       
     }
 
+    #setAllapotLista(){ 
+        for (let i = 0; i < this.#allapotLista.length; i++) {
+            let vel = rndGen(1, 100);
+            if(vel <= 80) this.#allapotLista[i] = true;
+            else this.#allapotLista[i] = false;
+        }
 
-    get MERET(){ return this.#MERET; }
-    get JATEKTER(){ return this.#jatekter; }
-    get jatekterLISTA(){ return this.#jatekterLista; }
+        this.#allapotLista.forEach((elem, index) => {
+            
+        });
+    }
+
+    #szomszedokKeresese(id){
+        this.#allapotLista[id] = !this.#allapotLista[id];
+
+        // szomszédok:
+        if(id % 3 !== 2) this.#allapotLista[id+1] = !this.#allapotLista[id+1];
+        if(id % 3 !== 0) this.#allapotLista[id-1] = !this.#allapotLista[id-1];        
+        if(id < 6) this.#allapotLista[id+3] = !this.#allapotLista[id+3];
+        if(id > 2) this.#allapotLista[id-3] = !this.#allapotLista[id-3];
+        this.#init();
+        /*
+            id. elem szomszédok
+            id - 1
+            id + 1
+            id - 3
+            id + 3
+        */
+    }
+
+    #init(){
+        $(".jatekter").empty();
+        this.#allapotLista.forEach((elem, index) => {
+            new Lampa(elem, index, $(".jatekter"));            
+        });
+    }
+
+    #ellenorzes(){
+        this.#allapotLista.forEach((elem, index) => {
+            if(!elem){
+                /* lekapcsolt false állapotokat számolja */
+                this.#db++;
+            }
+        });
+    }
+
+    get db(){ 
+        return this.#db;
+    }
+
+    get (allapotLista){
+        return this.#allapotLista;
+    }
+
+    get lepes(){
+        return this.#lepes;
+    }
+    
 }
