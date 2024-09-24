@@ -14,14 +14,11 @@ export default class Jatekter{
         this.#init();
         const UJJATEK = $('#ujJatekGomb');
             UJJATEK.on("click", function(){
-                location.reload();
-                //this.#init();            
+                location.reload();        
             });
         $(window).on("kapcsolas", (event)=>{
-            //console.log(event.detail);
 
             let id = event.detail;
-            //this.#lepes += 1;
             this.#szomszedokKeresese(id);
             let dbOff = 0;
             this.#allapotLista.forEach(elem => {
@@ -31,11 +28,6 @@ export default class Jatekter{
 
             if(dbOff === 9) alert("Gratulálunk! Sikerült leoltanod az összes lámpát!");
         })
-        /*      
-        this.#db = db;
-        this.#allapotLista = allapotLista;
-        this.#lepes = lepes;
-        */
        
     }
 
@@ -47,7 +39,6 @@ export default class Jatekter{
         }
 
         this.#allapotLista.forEach((elem, index) => {
-            
         });
     }
 
